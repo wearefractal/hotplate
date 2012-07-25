@@ -1,7 +1,5 @@
-# something todo  
-
 Todo = 
-	
+	[object Object]
 
 
 module.exports = Todo

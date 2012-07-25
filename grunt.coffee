@@ -100,12 +100,35 @@ module.exports = (grunt) ->
     file = grunt.file.expandFiles(@file.src)[0]
     contract = require file
 
-#    grunt.log.writeln JSON.parse( coffee.compile(contract, bare:true) )
-    grunt.log.writeln "generating package.json.."
-    for model, desc of contract.models
-      grunt.file.write "#{app.paths.models}/#{model}.coffee", 
-        "# #{desc}  \n\n" +
-        "#{model} = \n" +
-        "\t" +
-        "\n\n\n" +
-        "module.exports = #{model}"      
+    # TODO: package.json
+    grunt.log.writeln "package.json"
+
+    # models
+    grunt.log.writeln "models"
+    for model, v of contract.models
+      # description
+      if typeof v is String
+        desc = v
+        grunt.file.write "#{app.paths.models}/#{model}.coffee", 
+          "# #{desc}  \n\n" +
+          "#{model} = \n" +
+          "\t" +
+          "\n\n\n" +
+          "module.exports = #{model}"
+      # full model
+      else
+        m = v.toString()
+        grunt.file.write "#{app.paths.models}/#{model}.coffee", 
+          "#{model} = \n" +
+          "\t#{m}" + # to coffee obj
+          "\n\n\n" +
+          "module.exports = #{model}"
+ 
+    # archive
+    grunt.log.writeln "archive"
+
+    # TODO: services
+    grunt.log.writeln "services"
+
+    # views
+    grunt.log.writeln "views"

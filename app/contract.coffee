@@ -1,9 +1,11 @@
-module.exports = 
+todos =   
   name: "todos"
   goal: "keep track of todos"
 
   models:
-    Todo: "something todo"
+    Todo:
+      text: String
+      done: Boolean
 
   archive:
     todos: 'Todo.vector'
@@ -12,3 +14,6 @@ module.exports =
     index:
      route: '/'
      include: 'Todo.crud'
+
+
+module.exports = todos
