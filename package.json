@@ -1,0 +1,52 @@
+{
+  "name": "infiltrade",
+  "description": "infiltrade",
+  "version": "0.0.1",
+  "homepage": "https://github.com/wearefractal/infiltrade",
+  "author": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/wearefractal/infiltrade.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wearefractal/infiltrade/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/wearefractal/infiltrade/blob/master/LICENSE-MIT"
+    }
+  ],
+
+  "engines": {
+    "node": ">= 0.6.0"
+  },
+
+ "dependencies": {
+    "coffee-script": "*",
+    "mongoose": "*",
+    "connect": "*",
+    "vein": "*",
+    "async": "*",
+    "request": "*"
+  },
+
+  "devDependencies": {
+    "mocha": "*",
+    "should": "*",
+    "uglify-js": "*",
+    "jaded": "*",
+    "less": "*",
+    "grunt": "~0.3.11",
+    "grunt-reload": "*",
+    "grunt-coffee": "*",
+    "grunt-exec": "*"
+  },
+
+  "scripts": {
+    "test": "mocha --compilers coffee:coffee-script",
+    "start": "server.js"
+  },
+
+  "keywords": []
+}
