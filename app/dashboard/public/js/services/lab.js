@@ -72,3 +72,5 @@ View = (obj) ->
         template = @["#{list.bind}Template"]
         $("##{list.bind}s")[list.add] templates[list.bind] currentTarget.value
 */
+
+

@@ -1,12 +1,2 @@
-center
-  h1 todos
-  div
-    input#Todo-text(
-      placeholder = "What needs to be done?",
-      value       = '${ archive.newTodo.text | orBlank }'
-    ) 
-    #todos-list ${ archive.todos | list }
-
-  
-  div ${ archive.todos.length | orZero } 
-  | items left
+h1 todos
+include Todo.crud

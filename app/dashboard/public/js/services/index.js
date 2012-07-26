@@ -1,5 +1,3 @@
-var Archive, Collection, Todo, nestObj, templates;
-
 nestObj = function(obj, keypath) {
   var k, last, ref, _i, _len;
   if (ref = keypath.split(".")) {
@@ -16,7 +14,6 @@ nestObj = function(obj, keypath) {
     prop: last
   };
 };
-
 Collection = (function() {
 
   function Collection() {
@@ -38,7 +35,6 @@ Collection = (function() {
   return Collection;
 
 })();
-
 Archive = (function() {
 
   function Archive(obj) {
@@ -67,7 +63,6 @@ Archive = (function() {
   return Archive;
 
 })();
-
 Todo = (function() {
 
   function Todo(obj) {
@@ -82,13 +77,10 @@ Todo = (function() {
   return Todo;
 
 })();
-
 templates = [];
-
 templates['Todo'] = function(todo) {
   return "<div>" + todo.text + "</div>";
 };
-
 define(["app/server", "app/notify"], function(server, notify) {
   return function(_, main) {
     return server.ready(function() {

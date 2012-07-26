@@ -13,8 +13,6 @@ gruntConfig =
     jaded: 
       # -r for rivets binding
       command: "#{app.paths.npmBin}/jaded -dr -a \"jade\" -i ./app/dashboard/client/templates -o ./app/dashboard/public/templates"
-##    coffeecup: 
-##      command: "#{app.paths.npmBin}/coffeecup -o #{app.paths.public}/templates --js #{app.paths.client}/templates"
 
   coffee:
     app:
@@ -130,5 +128,31 @@ module.exports = (grunt) ->
     # TODO: services
     grunt.log.writeln "services"
 
+    genEl = (modelName, propName, opts) ->
+      "##{modelName}-#{propName}\n\n"
+
+    crud = (modelName) -> 
+      model = contract.models[modelName]
+      templ = ""
+      for k, v of model
+        # simple type 
+        if typeof v is 'function'
+          templ += genEl modelName, k, v
+        # object config
+        else if typeof(v) is 'object' and !Array.isArray(v) and Object.keys(v).length > 0
+          ## sdsd
+          templ = "TODO"
+
+        return templ
+
+    viewSchema =
+      include: (f) -> "include #{f}"
     # views
     grunt.log.writeln "views"
+    for view, opts of contract.views
+      templ = "h1 #{contract.name}\n"
+      for k, v of opts
+        templ += viewSchema[k] v if viewSchema[k]? 
+
+      grunt.file.write "#{app.paths.client}/templates/#{view}.jade", templ
+    
