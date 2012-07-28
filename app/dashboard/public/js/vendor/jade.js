@@ -1,4 +1,3 @@
-
 define([], function() {
   var attrs, escape, rethrow;
   escape = function(html) {

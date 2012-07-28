@@ -1,4 +1,5 @@
-todos =   
+module.exports =
+
   name: "todos"
   goal: "keep track of todos"
 
@@ -6,14 +7,13 @@ todos =
     Todo:
       text: String
       done: Boolean
+    User:
+      username: String 
 
   archive:
-    todos: 'Todo.vector'
+    todos: 'Todo-list'
 
   views:
     index:
      route: '/'
-     include: 'Todo.crud'
-
-
-module.exports = todos
+     include: 'Todo-crud'
