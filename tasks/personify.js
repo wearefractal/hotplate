@@ -1,59 +1,64 @@
+var contractSchema, set;
+
+set = function(grunt, prop, val) {
+  grunt.log.writeln("app." + prop + ": " + val);
+  return val;
+};
+
+contractSchema = {
+  name: set,
+  goal: set,
+  models: require('./services/models')
+};
+
 module.exports = function(grunt) {
   return grunt.registerMultiTask("personify", "parse contract", function() {
-    var contract, crud, desc, file, genEl, k, m, model, opts, templ, v, view, viewSchema, _ref, _ref1, _results;
+    var contract, file, k, v;
     file = grunt.file.expandFiles(this.file.src)[0];
     contract = require(file);
-    grunt.log.writeln("package.json");
-    grunt.log.writeln("models");
-    _ref = contract.models;
-    for (model in _ref) {
-      v = _ref[model];
-      if (typeof v === String) {
-        desc = v;
-        grunt.file.write("" + app.paths.models + "/" + model + ".coffee", ("# " + desc + "  \n\n") + ("" + model + " = \n") + "\t" + "\n\n\n" + ("module.exports = " + model));
-      } else {
-        m = v.toString();
-        grunt.file.write("" + app.paths.models + "/" + model + ".coffee", ("" + model + " = \n") + ("\t" + m) + "\n\n\n" + ("module.exports = " + model));
-      }
+    grunt.log.writeln("-=[ personify ]=-");
+    grunt.log.writeln("parsing contract: " + file);
+    for (k in contract) {
+      v = contract[k];
+      app[k] = typeof contractSchema[k] === "function" ? contractSchema[k](grunt, k, v) : void 0;
     }
-    grunt.log.writeln("archive");
-    grunt.log.writeln("services");
-    genEl = function(modelName, propName, opts) {
-      return "#" + modelName + "-" + propName + "\n\n";
-    };
-    crud = function(modelName) {
-      var k, templ;
-      model = contract.models[modelName];
-      templ = "";
-      for (k in model) {
-        v = model[k];
-        if (typeof v === 'function') {
-          templ += genEl(modelName, k, v);
-        } else if (typeof v === 'object' && !Array.isArray(v) && Object.keys(v).length > 0) {
-          templ = "TODO";
-        }
-        return templ;
-      }
-    };
-    viewSchema = {
-      include: function(f) {
-        return "include " + f;
-      }
-    };
-    grunt.log.writeln("views");
-    _ref1 = contract.views;
-    _results = [];
-    for (view in _ref1) {
-      opts = _ref1[view];
-      templ = "h1 " + contract.name + "\n";
-      for (k in opts) {
-        v = opts[k];
-        if (viewSchema[k] != null) {
-          templ += viewSchema[k](v);
-        }
-      }
-      _results.push(grunt.file.write("" + app.paths.client + "/templates/" + view + ".jade", templ));
-    }
-    return _results;
+    return console.log(app);
   });
 };
+
+/*
+    # archive
+    grunt.log.writeln "archive"
+
+    # TODO: services
+    grunt.log.writeln "services"
+
+    genEl = (modelName, propName, opts) ->
+      "##{modelName}-#{propName}\n\n"
+
+    crud = (modelName) -> 
+      model = contract.models[modelName]
+      templ = ""
+      for k, v of model
+        # simple type 
+        if typeof v is 'function'
+          templ += genEl modelName, k, v
+        # object config
+        else if typeof(v) is 'object' and !Array.isArray(v) and Object.keys(v).length > 0
+          ## sdsd
+          templ = "TODO"
+
+        return templ
+
+    viewSchema =
+      include: (f) -> "include #{f}"
+    # views
+    grunt.log.writeln "views"
+    for view, opts of contract.views
+      templ = "h1 #{contract.name}\n"
+      for k, v of opts
+        templ += viewSchema[k] v if viewSchema[k]? 
+
+      grunt.file.write "#{app.paths.client}/templates/#{view}.jade", templ
+*/
+

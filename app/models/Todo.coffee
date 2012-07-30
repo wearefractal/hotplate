@@ -1,5 +1,4 @@
-Todo = 
-	[object Object]
+module.exports = 
 
-
-module.exports = Todo
+	text: function String() { [native code] }
+	done: function Boolean() { [native code] }

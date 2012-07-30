@@ -1,5 +1,3 @@
-User = 
-	[object Object]
+module.exports = 
 
-
-module.exports = User
+	username: function String() { [native code] }

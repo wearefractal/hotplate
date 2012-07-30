@@ -1,9 +1,15 @@
-# Todo: ports and 
+# TODO: 
+# integrate server
 # if port in use use port++
 
 path = require 'path'
 module.exports = 
-  name: 'infiltrade'
+
+  name:       ''
+  models:     []
+  services:   []
+  archive:    {}
+  views:      []
   paths:
     root:     path.resolve '.'
     app:      path.resolve './app'

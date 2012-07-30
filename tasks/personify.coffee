@@ -1,32 +1,26 @@
+set = (grunt, prop, val) -> 
+  grunt.log.writeln "app.#{prop}: #{val}"
+  return val
+  #app[prop] = val
+
+contractSchema =
+  name:     set
+  goal:     set
+  models:   require './services/models'
+  #services: require './services/services'
+  #archive:  require './services/archive'
+  #views:    require './services/views'
+
 module.exports = (grunt) ->
   grunt.registerMultiTask "personify", "parse contract", ->
     file = grunt.file.expandFiles(@file.src)[0]
     contract = require file
-
-    # TODO: package.json
-    grunt.log.writeln "package.json"
-
-    # models
-    grunt.log.writeln "models"
-    for model, v of contract.models
-      # description 
-      if typeof v is String
-        desc = v
-        grunt.file.write "#{app.paths.models}/#{model}.coffee", 
-          "# #{desc}  \n\n" +
-          "#{model} = \n" +
-          "\t" +
-          "\n\n\n" +
-          "module.exports = #{model}"
-      # full model
-      else
-        m = v.toString()
-        grunt.file.write "#{app.paths.models}/#{model}.coffee", 
-          "#{model} = \n" +
-          "\t#{m}" + # to coffee obj
-          "\n\n\n" +
-          "module.exports = #{model}"
- 
+    grunt.log.writeln "-=[ personify ]=-"
+    grunt.log.writeln "parsing contract: #{file}"
+    for k, v of contract
+      app[k] = contractSchema[k]? grunt, k, v 
+    console.log app
+###
     # archive
     grunt.log.writeln "archive"
 
