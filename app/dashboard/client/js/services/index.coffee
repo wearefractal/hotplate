@@ -31,8 +31,3 @@ define ["app/server", "app/notify"], (server, notify) ->
       # display main content
 
       main '#main', archive: archive
-
-      #archive.vars.todos.add new Todo()
-
-      #$('#Todo-list').html templates['Todo'] 
-    
