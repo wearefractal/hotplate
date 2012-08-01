@@ -45,9 +45,6 @@ gruntConfig =
   lint:
     files: [ "grunt.js", "lib/**/*.js", "test/**/*.js" ]
 
-  personify:
-    files: "#{app.paths.app}/**/contract.coffee"
-
   ##
   ## watch
   ##
@@ -62,10 +59,6 @@ gruntConfig =
     jaded:
       files: "#{app.paths.client}/templates/*.jade"
       tasks: "exec:jaded reload"
-
-    personify:
-      files: "<config:personify.files>"
-      tasks: "personify"
 
     coffee:
       files: [ "<config:coffee.app.src>",
@@ -96,7 +89,7 @@ module.exports = (grunt) ->
 
   ## default 
 
-  grunt.registerTask "default", "personify lint test coffee reload start watch"
+  grunt.registerTask "default", "lint test coffee reload start watch"
 
   ## start 
 
