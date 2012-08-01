@@ -4,8 +4,8 @@ define ["app/server", "app/notify"], (server, notify) ->
 
       ## archive
 
-      archive =
-        todos: []
+      archive = {}
+        #todos: []
     
       ## rivets
 
@@ -19,8 +19,7 @@ define ["app/server", "app/notify"], (server, notify) ->
             console.log obj, keypath
           publish: (obj, keypath, value) ->
             console.log "pub"            
-            #console.log obj, keypath, value            
-            obj.set keypath, value
+            console.log obj, keypath, value            
             
       rivets.configure
         formatters:
