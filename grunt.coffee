@@ -89,7 +89,7 @@ module.exports = (grunt) ->
 
   ## default 
 
-  grunt.registerTask "default", "lint test coffee reload start watch"
+  grunt.registerTask "default", "exec:jaded lint test coffee reload start watch"
 
   ## start 
 

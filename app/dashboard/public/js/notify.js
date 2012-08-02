@@ -1,3 +1,4 @@
+
 define(function() {
   var notify;
   notify = function(text, type, pos) {
