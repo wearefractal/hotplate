@@ -5,6 +5,7 @@ to use
 
     $ git clone git@github.com:wearefractal/hotplate.git yourapp
     $ cd yourapp
+    $ npm install
     $ grunt
 
 edit 
