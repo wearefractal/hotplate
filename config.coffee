@@ -5,7 +5,7 @@
 path = require 'path'
 module.exports = 
 
-  name:       ''
+  name:       'hotplate'
   models:     []
   services:   []
   archive:    {}

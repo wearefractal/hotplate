@@ -1,20 +1,23 @@
 db            = require 'mongoose'
 async         = require 'async'
-{readdirSync} = require 'fs'
+{readdirSync, extname, basename} = require 'fs'
 config        = require '../config'
 
+console.log config.mongo.host
 db.connect config.mongo.host
 
 ##
 ## TODO: factor out
 ##
-###
+
 for file in readdirSync app.paths.models
   ext = extname file
   name = basename file, ext
   if require.extensions[ext]?
-    db.model name, require "#{app.paths.models}/#{name}"
-
+    try
+	  db.model name, require "#{app.paths.models}/#{name}"
+    catch e
+	  console.log e
 ## this too
 
 db.wipe = (cb) ->
