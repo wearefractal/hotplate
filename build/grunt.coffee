@@ -49,10 +49,10 @@ gruntConfig =
   copy:
     dist: 
       files: 
-        "../app/web/public/js/vendor":  "#{app.paths.client}/js/vendor/**"
-        "../app/web/public/css/":       "#{app.paths.client}/css/**"
-        "../app/web/public/img/":       "#{app.paths.client}/img/**"
-        "../app/web/public/index.html": "#{app.paths.client}/index.html"
+        "app/web/public/js/vendor/": "#{app.paths.client}/js/vendor/**"
+        "app/web/public/css/":       "#{app.paths.client}/css/**"
+        "app/web/public/img/":       "#{app.paths.client}/img/**"
+        "app/web/public/":           "#{app.paths.client}/index.html"
 
   ##
   ## watch
