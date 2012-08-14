@@ -45,17 +45,28 @@ gruntConfig =
   lint:
     files: [ "grunt.js", "lib/**/*.js", "test/**/*.js" ]
 
+  # dest: src
+  copy:
+    dist: 
+      files: 
+        "../app/web/public/js/vendor":  "#{app.paths.client}/js/vendor/**"
+        "../app/web/public/css/":       "#{app.paths.client}/css/**"
+        "../app/web/public/img/":       "#{app.paths.client}/img/**"
+        "../app/web/public/index.html": "#{app.paths.client}/index.html"
+
   ##
   ## watch
   ##
 
   watch:
-    index:
-      files: "#{app.paths.public}/index.html"
-      tasks: "reload"
+    client: 
+      files: [
+        "#{app.paths.client}/js/vendor/**",
+        "#{app.paths.client}/css/**",
+        "#{app.paths.client}/index.html"
+      ]
+      tasks: "copy reload"
 
-    # templates
-    
     jaded:
       files: "#{app.paths.client}/templates/*.jade"
       tasks: "exec:jaded reload"
@@ -67,10 +78,6 @@ gruntConfig =
                "<config:coffee.myTasks.src>" ]
       tasks: "coffee reload"    
 
-    styles:
-      files: "#{app.paths.public}/css/styles.css"
-      tasks: "reload"
-
   globals:
     exports: true
 
@@ -79,14 +86,15 @@ module.exports = (grunt) ->
   ## init config 
   grunt.initConfig gruntConfig
 
+  grunt.loadNpmTasks "grunt-contrib"
   grunt.loadNpmTasks "grunt-coffee"
   grunt.loadNpmTasks "grunt-reload"
   grunt.loadNpmTasks "grunt-exec"
 
   ## default 
-  grunt.registerTask "default", "exec:jaded lint test coffee reload start watch"
+  grunt.registerTask "default", "copy exec:jaded lint test coffee reload start watch"
 
-  ## start 
+  ## start to
   grunt.registerTask "start", "start up servers", ->
     grunt.log.writeln "starting servers..."
     require "#{app.paths.server}/server"
