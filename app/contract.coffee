@@ -1,5 +1,7 @@
 module.exports =
   
+  ## example template for a todos app
+
   name: "todos"
   goal: "keep track of todos"
 

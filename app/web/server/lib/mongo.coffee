@@ -1,11 +1,9 @@
 db     = require 'mongoose'
 async  = require 'async'
-config = require '../config'
 {extname, basename} = require 'path'
 {readdirSync} = require 'fs'
 
-console.log config.mongo.host
-db.connect config.mongo.host
+db.connect app.mongo.host
 
 ##
 ## TODO: factor out

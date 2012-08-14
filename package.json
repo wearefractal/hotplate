@@ -27,8 +27,7 @@
     "mongoose": "*",
     "connect": "*",
     "vein": "*",
-    "async": "*",
-    "request": "*"
+    "async": "*"
   },
 
   "devDependencies": {
