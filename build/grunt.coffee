@@ -12,7 +12,7 @@ gruntConfig =
     # http://github.com/wearefractal/jaded
     jaded: 
       # -r for rivets binding
-      command: "#{app.paths.npmBin}/jaded -dr -a \"jade\" -i ./app/web/client/templates -o ./app/web/public/templates"
+      command: "#{app.paths.npmBin}/jaded -dra -i ./app/web/client/templates -o ./app/web/public/templates"
 
   coffee:
     app:
@@ -76,9 +76,7 @@ gruntConfig =
 
 
 module.exports = (grunt) ->
-
   ## init config 
-  
   grunt.initConfig gruntConfig
 
   grunt.loadNpmTasks "grunt-coffee"
@@ -86,11 +84,9 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks "grunt-exec"
 
   ## default 
-
   grunt.registerTask "default", "exec:jaded lint test coffee reload start watch"
 
   ## start 
-
   grunt.registerTask "start", "start up servers", ->
     grunt.log.writeln "starting servers..."
     require "#{app.paths.server}/server"

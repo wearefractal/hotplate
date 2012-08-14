@@ -1,28 +1,13 @@
 {
-  "name": "yourapp",
-  "description": "yourapp",
-  "version": "0.0.1",
-  "homepage": "https://github.com/wearefractal/yourapp",
-  "author": {},
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/wearefractal/yourapp.git"
-  },
-  "bugs": {
-    "url": "https://github.com/wearefractal/yourapp/issues"
-  },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/wearefractal/yourapp/blob/master/LICENSE-MIT"
-    }
-  ],
+  "name":"APPNAME",
+  "description":"Nothing here yet",
+  "version":"0.0.1",
+  "homepage":"http://github.com/wearefractal/APPNAME",
+  "repository":"git://github.com/wearefractal/APPNAME.git",
+  "author":"Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
+  "main":"./index.js",
 
-  "engines": {
-    "node": ">= 0.6.0"
-  },
-
- "dependencies": {
+  "dependencies": {
     "coffee-script": "*",
     "mongoose": "*",
     "connect": "*",
@@ -46,6 +31,13 @@
     "test": "mocha --compilers coffee:coffee-script",
     "start": "server.js"
   },
-
-  "keywords": []
+  "engines":{
+    "node":">= 0.4.0"
+  },
+  "licenses":[
+    {
+       "type":"MIT",
+       "url":"http://github.com/wearefractal/APPNAME/raw/master/LICENSE"
+    }
+  ]
 }

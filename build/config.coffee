@@ -1,11 +1,7 @@
 path = require 'path'
 
-app = 
+module.exports = app =
   name:       'hotplate'
-  models:     []
-  services:   []
-  archive:    {}
-  views:      []
   paths:
     root:     path.resolve '.'
     app:      path.resolve './app'
@@ -18,6 +14,5 @@ app =
   web:
     port: process.env.PORT or 8080
 
-app.mongo = host: "mongodb://localhost:27017/#{app.name}"
-
-module.exports = app
+app.mongo = 
+  host: "mongodb://#{process.env.MONGO or 'localhost:27017'}/#{app.name}"

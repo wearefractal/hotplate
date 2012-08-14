@@ -1,21 +1,6 @@
-db = require 'mongoose'
-{Schema} = db
+{Schema} = require 'mongoose'
 
-yourModel = new Schema
-  id:
-    type: String
-    required: true
-    index:
-      unique: true
-      dropDups: true
+module.exports = new Schema
   name:
     type: String
     required: true
-    index:
-      unique: true      
-  category:
-    type: String
-    required: true
-
-
-module.exports = yourModel
