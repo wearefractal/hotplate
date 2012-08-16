@@ -11,8 +11,7 @@
     "mongoose": "*",
     "connect": "*",
     "vein": "*",
-    "async": "*",
-    "grunt-contrib": "~0.1.6"
+    "async": "*"
   },
   "devDependencies": {
     "mocha": "*",
@@ -23,7 +22,8 @@
     "grunt": "~0.3.11",
     "grunt-reload": "*",
     "grunt-coffee": "*",
-    "grunt-exec": "*"
+    "grunt-exec": "*",
+    "grunt-contrib": "~0.1.6"
   },
   "scripts": {
     "test": "mocha --compilers coffee:coffee-script",

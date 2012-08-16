@@ -8,11 +8,11 @@ gruntConfig =
   test:
     files: [ "tests/**/*.js" ]
 
-  exec: 
+    #exec: 
     # http://github.com/wearefractal/jaded
-    jaded: 
-      # -r for rivets binding
-      command: "#{app.paths.npmBin}/jaded -dra -i ./app/web/client/templates -o ./app/web/public/templates"
+    #jaded: 
+    # -r for rivets binding
+    #  command: "#{app.paths.npmBin}/jaded -dra -i ./app/web/client/templates -o ./app/web/public/templates"
 
   coffee:
     app:
@@ -69,7 +69,7 @@ gruntConfig =
 
     jaded:
       files: "#{app.paths.client}/templates/*.jade"
-      tasks: "exec:jaded reload"
+      tasks: "jaded reload"
 
     coffee:
       files: [ "<config:coffee.app.src>",
@@ -87,12 +87,12 @@ module.exports = (grunt) ->
   grunt.initConfig gruntConfig
 
   grunt.loadNpmTasks "grunt-contrib"
-  grunt.loadNpmTasks "grunt-coffee"
+  grunt.loadNpmTasks "grunt-coffee"   
   grunt.loadNpmTasks "grunt-reload"
   grunt.loadNpmTasks "grunt-exec"
 
   ## default 
-  grunt.registerTask "default", "copy exec:jaded lint test coffee reload start watch"
+  grunt.registerTask "default", "copy jaded lint test coffee reload start watch"
 
   ## start to
   grunt.registerTask "start", "start up servers", ->
@@ -100,3 +100,6 @@ module.exports = (grunt) ->
     require "#{app.paths.server}/server"
 
  
+  grunt.registerTask "jaded", "compile jaded templates", ->
+    jaded = require 'jaded'
+    console.log jaded
