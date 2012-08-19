@@ -8,12 +8,6 @@ gruntConfig =
   test:
     files: [ "tests/**/*.js" ]
 
-    #exec: 
-    # http://github.com/wearefractal/jaded
-    #jaded: 
-    # -r for rivets binding
-    #  command: "#{app.paths.npmBin}/jaded -dra -i ./app/web/client/templates -o ./app/web/public/templates"
-
   coffee:
     app:
       src: [ "#{app.paths.client}/js/*.coffee" ]

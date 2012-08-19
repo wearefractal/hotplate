@@ -3,7 +3,6 @@ define ["app/server"], (server, notify) ->
     server.ready (services) ->
       ## archive
       archive = {}
-        #todos: []
 
       # display main content
       index '#main', archive: archive
