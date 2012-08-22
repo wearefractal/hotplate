@@ -94,20 +94,19 @@ module.exports = (grunt) ->
     grunt.log.writeln "starting servers..."
     require "#{app.paths.server}/server"
 
-  ## jaded
+## jaded
   grunt.registerTask "jaded", "compile jaded templates", ->
     jaded = require 'jaded'  
-    {baseName}  = require 'path'
+    {basename, extname}  = require 'path'
     src   = app.paths.client + '/templates'
     dest  = app.paths.public + '/templates'
-    grunt.file.recurse src, 
+    grunt.file.recurse src,
       (absolute, root, subdir, filename) ->
-        [name, _] = filename.split '.'
-        dest = dest + "/" + "#{name}.js"
-        console.log dest
+        name = basename filename, extname filename
         template = jaded.compile grunt.file.read(absolute), 
           development: true
-          rivets:      true
-          amd:         true
-        grunt.file.write dest, template
+          rivets: true
+          amd: true
+          filename: absolute
+        grunt.file.write "#{dest}/#{name}.js", template
 
