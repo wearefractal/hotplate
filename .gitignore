@@ -2,3 +2,5 @@
 *.log
 node_modules
 *.node
+app/web/client/dev
+app/web/public/dev
