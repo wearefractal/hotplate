@@ -6,4 +6,4 @@ define ["app/server"], (server, notify) ->
 
       # display main content
       index '#main', archive: archive
-      server.sample 45, (r) ->
+      

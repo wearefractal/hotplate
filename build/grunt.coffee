@@ -6,8 +6,12 @@ global.app = require "./config"
 gruntConfig =
   pkg: "<json:package.json>"
   test:
-    files: [ "tests/**/*.js" ]
-
+    files: ["#{app.paths.app}/**/*.spec.coffee"]
+  mocha: 
+    options: 
+      reporter:    'spec'
+      ui:          'exports'
+      ignoreLeaks: 'true'
   coffee:
     app:
       src: [ "#{app.paths.client}/js/*.coffee" ]
@@ -39,13 +43,14 @@ gruntConfig =
   lint:
     files: [ "grunt.js", "lib/**/*.js", "test/**/*.js" ]
 
-  # dest: src
+  # dest: src 
   copy:
     dist: 
       files: 
         "app/web/public/js/vendor/": "#{app.paths.client}/js/vendor/**"
         "app/web/public/css/":       "#{app.paths.client}/css/**"
         "app/web/public/img/":       "#{app.paths.client}/img/**"
+        "app/web/public/dev/":       "#{app.paths.client}/dev/**"
         "app/web/public/":           "#{app.paths.client}/index.html"
 
   ##
@@ -53,6 +58,12 @@ gruntConfig =
   ##
 
   watch:
+    test:
+      files: "<config:test.files>"
+      tasks: "test"
+    services:
+      files: "#{app.paths.app}/**/services/**/*.coffee"
+      tasks: "test"
     client: 
       files: [
         "#{app.paths.client}/js/vendor/**",
@@ -91,10 +102,13 @@ module.exports = (grunt) ->
 
   ## start
   grunt.registerTask "start", "start up servers", ->
-    grunt.log.writeln "starting servers..."
+    grunt.log.writeln "starting..."
     require "#{app.paths.server}/server"
-
-## jaded
+    try
+      require "#{app.paths.app}/start"
+    catch e
+      console.log e
+  ## jaded
   grunt.registerTask "jaded", "compile jaded templates", ->
     jaded = require 'jaded'  
     {basename, extname}  = require 'path'
@@ -110,3 +124,39 @@ module.exports = (grunt) ->
           filename: absolute
         grunt.file.write "#{dest}/#{name}.js", template
 
+  grunt.registerMultiTask "test", "Run unit tests with Mocha", ->
+    Mocha = require 'mocha'
+    # tell grunt this is an asynchronous task
+    done = @async()
+
+    for key of require.cache
+      if require.cache[key]
+        delete require.cache[key]
+
+        console.warn "Mocha grunt task: Could not delete from require cache:\n" + key  if require.cache[key]
+      else
+        console.warn "Mocha grunt task: Could not find key in require cache:\n" + key
+
+    # load the options if they are specified
+    if typeof options is 'object'
+      options = grunt.config(["mocha", @target, "options"])
+    else
+      options = grunt.config("mocha.options") 
+    
+    # create a mocha instance with our options
+    mocha = new Mocha(options)
+
+    # add files to mocha
+    for file in grunt.file.expandFiles(@file.src)
+      mocha.addFile file
+
+    # run mocha asynchronously and catch errors!! (again, in case we are running this task in watch)
+
+    try
+      mocha.run (failureCount) ->
+        console.log "Mocha completed with " + failureCount + " failing tests"
+        done failureCount is 0
+    catch e
+      console.log "Mocha exploded!"
+      console.log e
+      done false
