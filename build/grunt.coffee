@@ -119,7 +119,7 @@ module.exports = (grunt) ->
         name = basename filename, extname filename
         template = jaded.compile grunt.file.read(absolute), 
           development: true
-          rivets: true
+          rivets: false
           amd: true
           filename: absolute
         grunt.file.write "#{dest}/#{name}.js", template

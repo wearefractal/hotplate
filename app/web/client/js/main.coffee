@@ -1,4 +1,4 @@
-define ["app/server", "app/rivets", "app/routes", "app/notify"], 
-	(server, rivets, routes, notify) ->
+define ["app/server", "app/routes"], 
+	(server, routes) ->
 		server.ready (services) ->
 			console.log "Connected - Available services: #{services}"

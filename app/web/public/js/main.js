@@ -1,5 +1,5 @@
 
-define(["app/server", "app/rivets", "app/routes", "app/notify"], function(server, rivets, routes, notify) {
+define(["app/server", "app/routes"], function(server, routes) {
   return server.ready(function(services) {
     return console.log("Connected - Available services: " + services);
   });
