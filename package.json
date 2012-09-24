@@ -23,6 +23,7 @@
     "grunt-reload": "*",
     "grunt-coffee": "*",
     "grunt-exec": "*",
+    "grunt-jaded": "*",
     "grunt-contrib": "~0.1.6"
   },
   "scripts": {
