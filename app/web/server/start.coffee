@@ -13,7 +13,7 @@ webServer.use connect.static app.paths.public
 server = webServer.listen app.web.port
 
 # Vein
-global.vein = new Vein.createServer server: server
+global.vein = Vein.createServer server: server
 global.vein.addFolder app.paths.services
 
 console.log "Server started on #{app.web.port}"
