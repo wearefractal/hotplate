@@ -4,6 +4,7 @@ mongo = require "./lib/mongo"
 
 # Web server
 webServer = connect()
+
 #webServer.use connect.responseTime()
 webServer.use connect.favicon()
 #webServer.use connect.limit config.images.maxsize
