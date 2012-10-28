@@ -3,7 +3,7 @@ simple boilerplate
 
 to use
 
-    $ git clone git@github.com:wearefractal/hotplate.git yourapp
+    $ git clone https://github.com/wearefractal/hotplate.git yourapp
     $ cd yourapp
     $ npm install
     $ grunt
