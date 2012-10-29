@@ -1,2 +1,2 @@
-module.exports = (cb, name) ->
-  cb "hello #{name} from the server"
+module.exports = (res, name) ->
+  res.reply "hello #{name} from the server"

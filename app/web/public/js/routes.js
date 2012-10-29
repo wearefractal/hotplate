@@ -1,5 +1,4 @@
 
-define(["dermis"], function(dermis) {
-  dermis.route('/');
-  return dermis.init();
+define(function() {
+  return dermis.route('/');
 });

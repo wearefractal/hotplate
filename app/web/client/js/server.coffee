@@ -1,1 +1,1 @@
-define ["vendor/vein"], -> Vein.createClient()
+define ["vendor/vein"], (Vein) -> Vein.createClient()

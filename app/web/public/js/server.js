@@ -1,4 +1,4 @@
 
-define(["vendor/vein"], function() {
+define(["vendor/vein"], function(Vein) {
   return Vein.createClient();
 });

@@ -1,6 +1,5 @@
-define ["app/server"], (server, notify) ->
-  (_, index) ->
+define ["app/server", "templates/index"], (server, index) ->
+  show: ->
     server.ready (services) ->
-
-      server.sample "phoenix", (res) ->
-        $('#main').html index message: res
+      server.sample "test", (msg) ->
+        $('#main').html index message: msg 
